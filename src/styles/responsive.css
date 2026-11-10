@@ -1,0 +1,287 @@
+/* ==========================================================
+   Responsive rules: large desktop → tablet → phone
+   ========================================================== */
+
+/* Large laptops: compress the nav */
+@media (max-width: 1240px) {
+  .logo-name {
+    display: none;
+  }
+  .nav-links a {
+    padding-inline: 8px;
+    font-size: 0.84rem;
+  }
+  .nav-links a::after {
+    left: 8px;
+    right: 8px;
+  }
+}
+
+/* Laptops / small desktops: switch to the hamburger menu */
+@media (max-width: 1080px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-toggle {
+    display: grid;
+  }
+  .logo-name {
+    display: inline;
+  }
+  .ach-card.is-featured {
+    grid-column: span 6;
+  }
+  .ach-card,
+  .ach-card:nth-child(2),
+  .ach-card:nth-child(n + 3),
+  .ach-card.no-cert {
+    grid-column: span 3;
+  }
+  .ach-card:last-child:nth-child(even) {
+    grid-column: span 6;
+  }
+}
+
+/* Tablets */
+@media (max-width: 960px) {
+  .hero {
+    padding-top: calc(var(--nav-h) + 32px);
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+  .hero-visual {
+    order: -1;
+  }
+  .portrait-frame {
+    width: min(78%, 360px);
+  }
+  .hero-copy {
+    text-align: left;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-photo {
+    max-width: 440px;
+  }
+  .skill-grid,
+  .lead-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .skill-card:last-child,
+  .lead-card:last-child {
+    grid-column: 1 / -1;
+  }
+  .feature-card {
+    grid-template-columns: 1fr;
+  }
+  .feature-main {
+    flex: none;
+    min-height: 0;
+    aspect-ratio: 16 / 11;
+  }
+  .ps-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .cert-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .news-grid,
+  .contact-grid,
+  .feedback-grid {
+    grid-template-columns: 1fr;
+  }
+  .news-clip {
+    max-width: 480px;
+  }
+  .portrait-caption {
+    display: none;
+  }
+}
+
+/* Phones */
+@media (max-width: 640px) {
+  :root {
+    --nav-h: 66px;
+  }
+  .btn {
+    min-height: 46px;
+    padding-inline: 20px;
+  }
+  .nav-cta .btn-sm span {
+    display: none;
+  }
+  .nav-cta .btn-sm {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+  .logo-name {
+    font-size: 1.05rem;
+  }
+  .hero {
+    padding-bottom: 80px;
+  }
+  .portrait-frame {
+    width: min(74%, 300px);
+  }
+  .badge-top {
+    right: -18%;
+    top: 10%;
+  }
+  .badge-bottom {
+    left: -20%;
+    bottom: 10%;
+  }
+  .float-badge {
+    padding: 8px 12px 8px 8px;
+    gap: 9px;
+    border-radius: 13px;
+  }
+  .fb-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .float-badge strong {
+    font-size: 0.8rem;
+  }
+  .float-badge small {
+    font-size: 0.7rem;
+  }
+  .hero-name-last {
+    padding-left: 0;
+  }
+  .hero-roles {
+    flex-direction: column;
+  }
+  .hero .eyebrow-line {
+    display: none;
+  }
+  .hero-buttons .btn {
+    flex: 1 1 auto;
+  }
+  .hero-buttons .btn-ghost {
+    flex-basis: 100%;
+  }
+  .scroll-cue {
+    display: none;
+  }
+  .fact-list {
+    grid-template-columns: 1fr;
+  }
+  .fact-list > div:nth-child(odd) {
+    padding-right: 0;
+  }
+  .about-photo::before {
+    inset: 12px -10px -12px 12px;
+  }
+  .timeline {
+    padding-left: 34px;
+  }
+  .timeline::before {
+    left: 9px;
+  }
+  .tl-dot {
+    left: -34px;
+    width: 20px;
+    height: 20px;
+  }
+  .tl-card {
+    padding: 22px 20px;
+  }
+  .skill-grid,
+  .lead-grid,
+  .cert-grid,
+  .more-projects {
+    grid-template-columns: 1fr;
+  }
+  .ach-grid {
+    grid-template-columns: 1fr;
+  }
+  .ach-card,
+  .ach-card.is-featured,
+  .ach-card:nth-child(2),
+  .ach-card:nth-child(n + 3),
+  .ach-card.no-cert,
+  .ach-card:last-child:nth-child(even) {
+    grid-column: auto;
+  }
+  .ach-card.is-featured {
+    grid-template-columns: 1fr;
+  }
+  .is-featured .ach-preview {
+    min-height: 0;
+    padding: 14px;
+  }
+  .feature-media {
+    padding: 12px;
+  }
+  .feature-actions .btn {
+    flex: 1 1 auto;
+  }
+  .fb-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .star {
+    width: 40px;
+    height: 44px;
+  }
+  .rating-label {
+    flex-basis: 100%;
+    margin: 6px 0 0;
+  }
+  .lightbox-title {
+    font-size: 1.02rem;
+  }
+  .lightbox-sub {
+    display: none;
+  }
+  .lightbox-count {
+    display: none;
+  }
+  .lb-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .lb-nav {
+    top: auto;
+    bottom: 18px;
+    width: 48px;
+    height: 48px;
+  }
+  .lightbox-stage {
+    padding-bottom: 84px;
+  }
+  .lb-prev {
+    left: calc(50% - 60px);
+  }
+  .lb-next {
+    right: calc(50% - 60px);
+  }
+  .footer-grid {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .news-clip button {
+    transform: rotate(-1deg);
+    padding: 10px;
+  }
+  .news-zoom {
+    right: 18px;
+    bottom: 18px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .hero-name {
+    font-size: 3rem;
+  }
+  .float-badge small {
+    display: none;
+  }
+}

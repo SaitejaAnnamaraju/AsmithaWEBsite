@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume | Alleshetti Asmitha</title>
+    <meta name="description" content="Resume of Alleshetti Asmitha, Information Technology student at MVSR Engineering College, Hyderabad." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root { --navy: #14213d; --gold: #8a672b; --ink: #1f2a44; --muted: #5c6378; --line: #e3dccd; --bg: #f1eadc; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 'DM Sans', system-ui, sans-serif; }
+      .bar { max-width: 860px; margin: 24px auto 0; padding: 0 16px; display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; }
+      .bar a, .bar button { font: 600 14px 'DM Sans', sans-serif; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--navy); background: transparent; color: var(--navy); text-decoration: none; cursor: pointer; }
+      .bar button { background: var(--navy); color: #f8f4ec; }
+      .page { max-width: 860px; margin: 16px auto 40px; background: #fffdf8; padding: 56px clamp(20px, 6vw, 64px); box-shadow: 0 20px 50px -30px rgba(20,33,61,.4); border-radius: 6px; }
+      header { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; border-bottom: 2px solid var(--navy); padding-bottom: 18px; }
+      h1 { font: 700 2.6rem/1 'Cormorant Garamond', serif; margin: 0; color: var(--navy); letter-spacing: .01em; }
+      .role { color: var(--gold); font-weight: 600; margin-top: 8px; }
+      .contact { text-align: right; color: var(--muted); font-size: 13.5px; }
+      h2 { font: 700 1.35rem 'Cormorant Garamond', serif; color: var(--navy); margin: 28px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--line); letter-spacing: .04em; text-transform: uppercase; }
+      .item { margin-bottom: 12px; }
+      .item-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-weight: 600; }
+      .item-head span:last-child { color: var(--muted); font-weight: 500; font-size: 13.5px; }
+      .sub { color: var(--muted); font-size: 14px; }
+      ul { margin: 6px 0 0; padding-left: 18px; }
+      li { margin: 3px 0; }
+      .skills { display: grid; grid-template-columns: 170px 1fr; gap: 4px 16px; }
+      .skills dt { font-weight: 600; }
+      .skills dd { margin: 0; }
+      .tbd { color: var(--muted); font-style: italic; }
+      @media (max-width: 560px) { .contact { text-align: left; } .skills { grid-template-columns: 1fr; } .skills dd { margin-bottom: 8px; } }
+      @media print {
+        body { background: #fff; }
+        .bar { display: none; }
+        .page { box-shadow: none; margin: 0; padding: 0; max-width: none; }
+        @page { margin: 16mm; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bar">
+      <a href="/">← Back to portfolio</a>
+      <button type="button" onclick="window.print()">Save as PDF / Print</button>
+    </div>
+    <main class="page">
+      <header>
+        <div>
+          <h1>Alleshetti Asmitha</h1>
+          <p class="role">Information Technology Student · Aspiring Software Developer</p>
+        </div>
+        <div class="contact">
+          Hyderabad, Telangana, India<br />
+          <!-- Add email / LinkedIn / GitHub here once available -->
+        </div>
+      </header>
+
+      <h2>Profile</h2>
+      <p>
+        Information Technology engineering student with a strong interest in software development, frontend
+        technologies and emerging technologies. Enjoys turning ideas into practical solutions, presenting technical
+        work and taking on leadership responsibilities.
+      </p>
+
+      <h2>Education</h2>
+      <div class="item">
+        <div class="item-head"><span>B.Tech, Information Technology</span><span class="tbd">Years: to be updated</span></div>
+        <div class="sub">MVSR Engineering College, Hyderabad (UGC Autonomous, affiliated to Osmania University)</div>
+      </div>
+
+      <h2>Technical Skills</h2>
+      <dl class="skills">
+        <dt>Languages</dt><dd>Python, C, Java, JavaScript</dd>
+        <dt>Frontend</dt><dd>HTML5, CSS3, React.js, AngularJS</dd>
+        <dt>Professional</dt><dd>Problem solving, team collaboration, communication, technical presentation, leadership</dd>
+      </dl>
+
+      <h2>Projects</h2>
+      <div class="item">
+        <div class="item-head"><span>MediLink: AI-Driven Wearable Healthcare Platform</span><span>Research paper, 2026</span></div>
+        <ul>
+          <li>Proposed a wearable health-monitoring and emergency response platform using AI-based emergency detection.</li>
+          <li>Designed a hybrid Bluetooth and LoRa communication approach to alert caregivers and responders where mobile connectivity is limited.</li>
+          <li>Presented the paper at the IEI Telangana State Centre One Day All India Seminar (27 June 2026).</li>
+        </ul>
+      </div>
+
+      <h2>Achievements</h2>
+      <ul>
+        <li><strong>3rd Place</strong>, Codexa X Vibe Agent, SAMAVARTHAN 2K26 National Level Technical Fest, MVSR Engineering College (17–18 Apr 2026)</li>
+        <li><strong>Technical paper presentation</strong> on MediLink, IEI Telangana State Centre, Visvesvaraya Bhavan, Hyderabad (27 Jun 2026)</li>
+      </ul>
+
+      <h2>Leadership &amp; Activities</h2>
+      <ul>
+        <li><strong>Event Coordinator</strong>, TECHDUO 2026, Department of IT, SAMAVARTHAN 2K26</li>
+        <li><strong>NCC Cadet</strong>, 2(T) Air Sqn (Tech) NCC, Secunderabad Group; Annual Training Camp V, Moinabad (8–17 May 2025)</li>
+        <li><strong>Yuva Aapda Mitra Scheme</strong>, 7-day residential disaster management training, 1st BN TGSP, Yousufguda (24–30 Oct 2026)</li>
+      </ul>
+
+      <h2>Certifications &amp; Participation</h2>
+      <ul>
+        <li>Viksit Bharat Young Leaders Dialogue 2027 Online Quiz, Ministry of Youth Affairs &amp; Sports (23 Sep 2026)</li>
+        <li>“Say Yes to Life, No to Drugs” Pledge, Narcotics Control Bureau (26 Jun 2025)</li>
+      </ul>
+    </main>
+  </body>
+</html>

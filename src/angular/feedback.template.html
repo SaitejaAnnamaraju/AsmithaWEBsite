@@ -1,0 +1,96 @@
+<div class="fb-wrap">
+  <!-- Delivery notice: always honest about what will happen -->
+  <p class="fb-notice" ng-if="vm.status === 'idle' || vm.status === 'sending' || vm.status === 'error'">
+    <span class="fb-notice-dot" aria-hidden="true"></span>
+    <span ng-if="vm.mode === 'emailjs'">This website has no server or database. Your feedback is emailed to Asmitha through EmailJS and is not stored here.</span>
+    <span ng-if="vm.mode === 'mailto'">This website has no server or database. Submitting opens your own email app with the feedback filled in. It is only sent when you press send there.</span>
+    <span ng-if="vm.mode === 'manual'">This website has no server or database, and online delivery isn’t set up yet, so feedback can’t be sent from this page. You can still fill it in and copy it.</span>
+  </p>
+
+  <form class="fb-form" name="fbForm" novalidate ng-submit="vm.submit()" ng-if="vm.status === 'idle' || vm.status === 'sending' || vm.status === 'error'">
+    <div class="fb-row">
+      <div class="field" ng-class="{ 'has-error': vm.show('name') }">
+        <label for="fb-name">Your name <span class="req" aria-hidden="true">*</span></label>
+        <input id="fb-name" type="text" autocomplete="name" maxlength="120" ng-model="vm.form.name" ng-blur="vm.touch('name')"
+               aria-required="true" aria-invalid="{{ vm.show('name') ? 'true' : 'false' }}" aria-describedby="fb-name-err" placeholder="e.g. Priya Sharma" />
+        <p class="field-error" id="fb-name-err" role="alert" ng-if="vm.show('name')">{{ vm.errors().name }}</p>
+      </div>
+
+      <div class="field" ng-class="{ 'has-error': vm.show('email') }">
+        <label for="fb-email">Email <span class="opt">(optional)</span></label>
+        <input id="fb-email" type="email" autocomplete="email" ng-model="vm.form.email" ng-model-options="{ allowInvalid: true }" ng-blur="vm.touch('email')"
+               aria-invalid="{{ vm.show('email') ? 'true' : 'false' }}" aria-describedby="fb-email-err" placeholder="So Asmitha can reply" />
+        <p class="field-error" id="fb-email-err" role="alert" ng-if="vm.show('email')">{{ vm.errors().email }}</p>
+      </div>
+    </div>
+
+    <fieldset class="field rating" ng-class="{ 'has-error': vm.show('rating') }">
+      <legend>Your rating <span class="req" aria-hidden="true">*</span></legend>
+      <div class="stars" ng-mouseleave="vm.hover = 0">
+        <label ng-repeat="n in vm.stars" class="star" ng-class="{ 'on': n <= (vm.hover || vm.form.rating) }" ng-mouseenter="vm.hover = n">
+          <input type="radio" name="fb-rating" ng-model="vm.form.rating" ng-value="n" ng-change="vm.touch('rating')"
+                 aria-invalid="{{ vm.show('rating') && n === 1 ? 'true' : 'false' }}" />
+          <span class="sr-only">{{ n }} star{{ n > 1 ? 's' : '' }}, {{ vm.labels[n] }}</span>
+          <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" focusable="false">
+            <path d="M12 2.8l2.83 5.73 6.33.92-4.58 4.46 1.08 6.3L12 17.24l-5.66 2.97 1.08-6.3L2.84 9.45l6.33-.92z" />
+          </svg>
+        </label>
+        <span class="rating-label" aria-hidden="true">{{ vm.hover ? vm.hover + ' of 5 · ' + vm.labels[vm.hover] : vm.ratingLabel() }}</span>
+      </div>
+      <p class="field-error" role="alert" ng-if="vm.show('rating')">{{ vm.errors().rating }}</p>
+    </fieldset>
+
+    <div class="field" ng-class="{ 'has-error': vm.show('message') }">
+      <label for="fb-message">Feedback <span class="req" aria-hidden="true">*</span></label>
+      <textarea id="fb-message" rows="5" ng-model="vm.form.message" ng-blur="vm.touch('message')" ng-trim="false"
+                aria-required="true" aria-invalid="{{ vm.show('message') ? 'true' : 'false' }}" aria-describedby="fb-message-err fb-count"
+                placeholder="What did you think of the portfolio?"></textarea>
+      <div class="field-foot">
+        <p class="field-error" id="fb-message-err" role="alert" ng-if="vm.show('message')">{{ vm.errors().message }}</p>
+        <span class="count" id="fb-count" ng-class="{ over: (vm.form.message || '').length > vm.limit }">{{ (vm.form.message || '').length }} / {{ vm.limit }}</span>
+      </div>
+    </div>
+
+    <p class="fb-error" role="alert" ng-if="vm.status === 'error'">
+      Sorry, your feedback couldn’t be sent just now. Please check your connection and try again.
+    </p>
+
+    <div class="fb-actions">
+      <button type="submit" class="btn btn-navy" ng-disabled="vm.status === 'sending'">
+        <span ng-if="vm.status !== 'sending'">Submit Feedback</span>
+        <span ng-if="vm.status === 'sending'">Sending…</span>
+      </button>
+      <span class="fb-hint"><span class="req" aria-hidden="true">*</span> Required</span>
+    </div>
+  </form>
+
+  <!-- Success / outcome states -->
+  <div class="fb-result" ng-if="vm.status === 'sent'" role="status">
+    <span class="fb-result-icon ok" aria-hidden="true">✓</span>
+    <h3>Thank you, {{ vm.form.name.trim() }}!</h3>
+    <p>Your feedback has been sent to Asmitha.</p>
+    <button type="button" class="btn btn-outline" ng-click="vm.reset()">Send more feedback</button>
+  </div>
+
+  <div class="fb-result" ng-if="vm.status === 'mailto'" role="status">
+    <span class="fb-result-icon" aria-hidden="true">✉</span>
+    <h3>Almost there, {{ vm.form.name.trim() }}.</h3>
+    <p>Your email app should now be open with your feedback filled in. <strong>It isn’t sent until you press send there.</strong> If nothing opened, copy the message below and email it yourself.</p>
+    <textarea id="fb-composed" class="composed" readonly rows="7" ng-model="vm.composed" aria-label="Your composed feedback message"></textarea>
+    <div class="fb-actions">
+      <button type="button" class="btn btn-navy" ng-click="vm.copy()">{{ vm.copied ? 'Copied ✓' : 'Copy message' }}</button>
+      <button type="button" class="btn btn-outline" ng-click="vm.reset()">Start over</button>
+    </div>
+  </div>
+
+  <div class="fb-result" ng-if="vm.status === 'manual'" role="status">
+    <span class="fb-result-icon" aria-hidden="true">i</span>
+    <h3>Thanks, {{ vm.form.name.trim() }}. Your feedback is ready but has not been sent.</h3>
+    <p>Online delivery isn’t set up on this site yet, so nothing has been sent or saved. Copy your message below to share it with Asmitha directly.</p>
+    <textarea id="fb-composed" class="composed" readonly rows="7" ng-model="vm.composed" aria-label="Your composed feedback message"></textarea>
+    <div class="fb-actions">
+      <button type="button" class="btn btn-navy" ng-click="vm.copy()">{{ vm.copied ? 'Copied ✓' : 'Copy message' }}</button>
+      <button type="button" class="btn btn-outline" ng-click="vm.reset()">Start over</button>
+    </div>
+  </div>
+</div>
